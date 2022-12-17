@@ -39,12 +39,27 @@ jobs:
          docker build --no-cache -t krutoypan3/rating ./src/rating/ && docker push krutoypan3/rating:latest
          docker build --no-cache -t krutoypan3/library ./src/library/ && docker push krutoypan3/library:latest
          docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
-      - name: Deploy to k8s
+
+
+      - name: Deploy
         run: |
-          cd k8s
-          helm delete postgres && helm install postgres postgres-chart/
-          helm delete services && helm install services services-chart/
-          sleep 65
+          echo "run deploy"
+          echo kubectl config set-cluster rsoi-flights-service-cluster --server="KUBE_URL" --insecure-skip-tls-verify=true
+          kubectl config set-cluster rsoi-flights-service-cluster --server="KUBE_URL" --insecure-skip-tls-verify=true
+          echo kubectl config set-credentials cloud_okteto_com-user --token=KUBE_TOKEN
+          kubectl config set-credentials cloud_okteto_com-user --token="$KUBE_TOKEN"
+          echo kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace=\"kruto\"
+          kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace="kruto"
+          
+          kubectl config use-context default
+          echo kubectl get pods
+          kubectl get pods
+          cd k8s && helm upgrade services ./services-chart
+          sleep 45
+
+
+
+
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
