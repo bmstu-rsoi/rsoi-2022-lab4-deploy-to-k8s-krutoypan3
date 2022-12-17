@@ -33,7 +33,7 @@ jobs:
       - name: Push images
         run: |
           docker login -u krutoypan3 -p Wi@REtCTC5maj9z
-          docker-compose push krutoypan3/allahpomogi:version1
+          docker-compose push krutoypan3/allahpomogi:allahpomogi:version1
 
       - name: deploy
         run: |
