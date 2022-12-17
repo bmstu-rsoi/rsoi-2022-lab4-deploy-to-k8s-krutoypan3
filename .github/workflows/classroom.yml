@@ -28,11 +28,13 @@ jobs:
 
       - uses: docker/setup-buildx-action@v2
       - name: Build images
-        run: docker-compose build -t krutoypan3/allahpomogi:latest
+        run: docker-compose build -t krutoypan3/allahpomogi:version1
 
       - name: Push images
         run: |
           docker login -u krutoypan3 -p Wi@REtCTC5maj9z
+          tag docker allahpomogi krutoypan3/allahpomogi:version1
+          docker push krutoypan3/allahpomogi:version1
           docker-compose push
 
       - name: deploy
