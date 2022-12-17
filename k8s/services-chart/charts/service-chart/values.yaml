@@ -1,10 +1,10 @@
-domain: tichq.ru
+domain: krutoypan3.ru
 service:
   port: 8080
   isGateway:
   image:
     name:
-    version:
+    version: latest
   database:
     name:
     host: postgres
