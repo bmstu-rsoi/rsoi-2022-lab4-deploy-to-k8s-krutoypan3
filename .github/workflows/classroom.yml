@@ -34,7 +34,7 @@ jobs:
         run: |
           docker login -u krutoypan3 -p Wi@REtCTC5maj9z
           docker tag allahpomogi krutoypan3/allahpomogi
-          docker-compose push krutoypan3/allahpomogi:allahpomogi
+          docker-compose push krutoypan3/allahpomogi
 
       - name: deploy
         run: |
