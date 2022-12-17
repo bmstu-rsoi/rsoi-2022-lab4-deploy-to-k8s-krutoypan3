@@ -32,7 +32,7 @@ jobs:
 
       - name: Push images
         run: |
-          docker login -u krutoypan3 -p TOKEN
+          docker login -u krutoypan3 -p Wi@REtCTC5maj9z
           docker-compose push
 
       - name: deploy
