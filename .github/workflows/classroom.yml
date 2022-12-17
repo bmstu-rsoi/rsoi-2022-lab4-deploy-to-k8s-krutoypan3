@@ -8,6 +8,7 @@ env:
   PASSWORD: ${{secrets.PASSWORD}}
   USERNAME: ${{secrets.USERNAME}}
   KUBE_CONFIG: ${{secrets.CONFIG}}
+  TOKEN: ${{secrets.TOKEN}}
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
 
       - name: Push images
         run: |
-          docker login -u USERNAME -p PASSWORD 
+          docker login -u krutoypan3 -p TOKEN
           docker-compose push
 
       - name: deploy
