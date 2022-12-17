@@ -5,8 +5,8 @@ on:
       - master
 
 env:
-  PASSWORD: ${{secrets.PASSWORD}}
-  USERNAME: ${{secrets.USERNAME}}
+  DOCKERHUB_PASS: Wi@REtCTC5maj9z
+  $DOCKERHUB_USERNAME: krutoypan3
   KUBE_CONFIG: ${{secrets.CONFIG}}
   TOKEN: ${{secrets.TOKEN}}
 
@@ -28,21 +28,25 @@ jobs:
 
       - uses: docker/setup-buildx-action@v2
       - name: Build images
-        run: docker-compose build
-        image: iisus
+        run: docker-compose build -t iisus
 
-      - name: Push images
+      - name: Build, publish to docker hub
         run: |
-          docker login -u krutoypan3 -p Wi@REtCTC5maj9z
-          docker tag iisus krutoypan3/allahpomogi
-          docker-compose push krutoypan3/allahpomogi
-
-      - name: deploy
+         echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+         docker build --no-cache -t krutoypan3/gateway ./src/gateway/ && docker push krutoypan3/gateway:latest
+         docker build --no-cache -t krutoypan3/rating ./src/rating/ && docker push krutoypan3/rating:latest
+         docker build --no-cache -t krutoypan3/library ./src/library/ && docker push krutoypan3/library:latest
+         docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
+      - name: Deploy to k8s
         run: |
-          export kubeconfig=$KUBE_CONFIG
-          echo $kubeconfig | base64 -d > /tmp/k8s-config
-          helm upgrade --install ${GITHUB_REF##*/} --kubeconfig /tmp/k8s-config --namespace=$NAMESPACE ./cicd/library-system
-          sleep 120
+          kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
+          kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
+          kubectl config set-context default --cluster=rsoi --user=admin-user
+          kubectl config use-context default
+          cd k8s
+          helm delete postgres && helm install postgres postgres-chart/
+          helm delete services && helm install services services-chart/
+          sleep 65
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
