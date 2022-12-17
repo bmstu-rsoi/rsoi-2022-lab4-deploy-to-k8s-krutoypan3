@@ -50,7 +50,8 @@ jobs:
           kubectl config set-credentials cloud_okteto_com-user --token="$KUBE_TOKEN"
           echo kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace=\"kruto\"
           kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace="kruto"
-          
+          kubectl config view --raw > ~/.kube/config
+
           kubectl config use-context default
           echo kubectl get pods
           kubectl get pods
