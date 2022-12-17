@@ -41,11 +41,6 @@ jobs:
          docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
       - name: Deploy to k8s
         run: |
-          kubectl config view --raw > ~/.kube/config
-          kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
-          kubectl config set-context default --cluster=rsoi --user=admin-user
-          kubectl config use-context default
           cd k8s
           helm delete postgres && helm install postgres postgres-chart/
           helm delete services && helm install services services-chart/
