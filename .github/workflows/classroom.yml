@@ -8,6 +8,8 @@ env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
   KUBE_CONFIG: service-chart-configmap
+  KUBE_URL: krutoypan3.ru
+  KUBE_TOKEN: kuyoken
   TOKEN: ${{secrets.TOKEN}}
 
 jobs:
