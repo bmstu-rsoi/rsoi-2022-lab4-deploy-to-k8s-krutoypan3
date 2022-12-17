@@ -5,8 +5,8 @@ on:
       - master
 
 env:
-  PSCI_REGISTRY_PASSWORD: ${{secrets.PASSWORD}}
-  PSCI_REGISTRY_USERNAME: ${{secrets.USERNAME}}
+  PASSWORD: ${{secrets.PASSWORD}}
+  USERNAME: ${{secrets.USERNAME}}
   KUBE_CONFIG: ${{secrets.CONFIG}}
 
 jobs:
