@@ -44,9 +44,8 @@ jobs:
       - name: Deploy
         run: |
           echo "run deploy"
-          mkdir -p $HOME/.kube
-          sudo cp -i /etc/kubernetes/admin.conf .kube/config
-          sudo chown $(id -u):$(id -g) .kube/config
+          mkdir ~/.kube
+          vim ~/.kube/config
           echo kubectl config set-cluster rsoi-flights-service-cluster --server="KUBE_URL" --insecure-skip-tls-verify=true
           kubectl config set-cluster rsoi-flights-service-cluster --server="KUBE_URL" --insecure-skip-tls-verify=true
           echo kubectl config set-credentials cloud_okteto_com-user --token=KUBE_TOKEN
