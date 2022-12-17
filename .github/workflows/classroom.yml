@@ -7,7 +7,7 @@ on:
 env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
-  KUBE_CONFIG: ${{secrets.CONFIG}}
+  KUBE_CONFIG: service-chart-configmap
   TOKEN: ${{secrets.TOKEN}}
 
 jobs:
