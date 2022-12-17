@@ -6,7 +6,7 @@ on:
 
 env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
-  $DOCKERHUB_USERNAME: krutoypan3
+  DOCKERHUB_USERNAME: krutoypan3
   KUBE_CONFIG: ${{secrets.CONFIG}}
   TOKEN: ${{secrets.TOKEN}}
 
