@@ -43,7 +43,8 @@ jobs:
 
       - name: Deploy
         run: |
-          export KUBECONFIG=/var/snap/microk8s/4094/credentials/client.config
+          yc managed-kubernetes cluster list
+
           kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
           kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
           kubectl config set-context default --cluster=rsoi --user=admin-user
