@@ -43,12 +43,22 @@ jobs:
 
       - name: Deploy
         run: |
+          echo "run deploy"
+          echo kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
           kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin --token="$KUBE_TOKEN"
-          kubectl config set-context default --cluster=rsoi --user=admin
+          echo kubectl config set-credentials cloud_okteto_com-user --token=KUBE_TOKEN
+          kubectl config set-credentials cloud_okteto_com-user --token="$KUBE_TOKEN"
+          echo kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace=\"kruto\"
+          kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace="kruto"
           kubectl config use-context default
-          kubectl apply -f k8s.yaml
+          kubectl config get-contexts
+          echo kubectl get pods
+          kubectl get pods
+          cd k8s && helm upgrade services ./services-chart
           kubectl get deployments
+
+          sleep 45
+
 
 
 
