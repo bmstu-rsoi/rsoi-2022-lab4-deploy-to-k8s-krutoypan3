@@ -48,7 +48,7 @@ jobs:
           kubectl config set-context default --cluster=rsoi --user=admin
           kubectl config use-context default
           kubectl apply -f k8s.yaml
-
+          kubectl get deployments
 
 
 
