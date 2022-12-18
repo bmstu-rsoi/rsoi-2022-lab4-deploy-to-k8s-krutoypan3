@@ -8,7 +8,7 @@ env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
   KUBE_CONFIG: service-chart-configmap
-  KUBE_URL: krutoypan3.ru
+  KUBE_URL: localhost
   KUBE_TOKEN: kuyoken
   TOKEN: ${{secrets.TOKEN}}
 
@@ -44,8 +44,8 @@ jobs:
       - name: Deploy
         run: |
           echo "run deploy"
-          echo kubectl config set-cluster rsoi --server="krutoypan3.ru" --insecure-skip-tls-verify=true
-          kubectl config set-cluster rsoi --server="krutoypan3.ru" --insecure-skip-tls-verify=true
+          echo kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
+          kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
           echo kubectl config set-credentials cloud_okteto_com-user --token=KUBE_TOKEN
           kubectl config set-credentials cloud_okteto_com-user --token="$KUBE_TOKEN"
           echo kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace=\"kruto\"
