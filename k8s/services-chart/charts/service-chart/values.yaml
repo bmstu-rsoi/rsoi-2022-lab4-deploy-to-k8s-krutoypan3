@@ -1,4 +1,5 @@
 domain: krutoypan3.ru
+version: 1.0.0
 service:
   port: 8080
   isGateway:
