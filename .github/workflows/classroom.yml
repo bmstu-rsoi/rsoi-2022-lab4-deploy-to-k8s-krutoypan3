@@ -43,6 +43,8 @@ jobs:
 
       - name: Deploy
         run: |
+          [microk8s] kubectl config view --raw > ~/.kube/config
+
           kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
           kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
           kubectl config set-context default --cluster=rsoi --user=admin-user
@@ -51,6 +53,7 @@ jobs:
           helm delete postgres && helm install postgres postgres-chart/
           helm delete services && helm install services services-chart/
           sleep 65
+          
 
 
 
