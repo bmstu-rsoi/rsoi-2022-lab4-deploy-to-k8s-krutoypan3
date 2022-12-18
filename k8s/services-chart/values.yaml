@@ -3,7 +3,7 @@ rating:
     port: 8050
     image:
       name: krutoypan3/rating
-      version: "latest"
+      version: "/api/v1"
     database:
       name: rating
 library:
@@ -11,7 +11,7 @@ library:
     port: 8060
     image:
       name: krutoypan3/library
-      version: "latest"
+      version: "/api/v1"
     database:
       name: library
 reservation:
@@ -19,7 +19,7 @@ reservation:
     port: 8070
     image:
       name: krutoypan3/reservation
-      version: "latest"
+      version: "/api/v1"
     database:
       name: reservation
 gateway:
@@ -27,5 +27,5 @@ gateway:
     port: 8080
     image:
       name: krutoypan3/gateway
-      version: "latest"
+      version: "/api/v1"
     isGateway: true
