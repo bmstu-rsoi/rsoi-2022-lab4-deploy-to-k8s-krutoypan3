@@ -44,7 +44,6 @@ jobs:
       - name: Deploy
         run: |
           echo "run deploy"
-          kubectl config use-context default
           echo kubectl get pods
           kubectl get pods
           cd k8s && helm upgrade services ./charts
