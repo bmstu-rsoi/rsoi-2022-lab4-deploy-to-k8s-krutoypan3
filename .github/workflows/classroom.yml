@@ -44,13 +44,10 @@ jobs:
       - name: Deploy
         run: |
           kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
-          kubectl config set-context default --cluster=rsoi --user=admin-user
+          kubectl config set-credentials admin --token="$KUBE_TOKEN"
+          kubectl config set-context default --cluster=rsoi --user=admin
           kubectl config use-context default
-          cd k8s
-          helm delete postgres && helm install postgres postgres-chart/
-          helm delete services && helm install services services-chart/
-          sleep 65
+          kubectl apply -f k8s.yaml
 
 
 
