@@ -52,10 +52,9 @@ jobs:
           kubectl config set-context default --cluster=rsoi --user=cloud_okteto_com-user --namespace="kruto"
           kubectl config use-context default
           kubectl config get-contexts
-          kubectl get deployments
           echo kubectl get pods
           kubectl get pods
-          cd k8s && helm upgrade services ./services-chart
+          cd k8s && helm upgrade services ./charts
 
           sleep 45
 
