@@ -43,7 +43,7 @@ jobs:
 
       - name: Deploy
         run: |
-          yc managed-kubernetes cluster list
+          kubectl get clusters
 
           kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
           kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
