@@ -31,14 +31,12 @@ jobs:
       - name: Connect to YC
         run: |
          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-         
+         yc init
 
 
       - name: Build, publish to docker hub yc
         run: |
          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-         yc init
-         yc container registry get crpg934f0qu6v6sq6pj9
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/gateway ./src/gateway/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/gateway:latest
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/rating ./src/rating/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/rating:latest
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
