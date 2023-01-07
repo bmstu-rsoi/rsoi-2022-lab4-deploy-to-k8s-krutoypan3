@@ -11,7 +11,6 @@ env:
   KUBE_URL: localhost
   KUBE_TOKEN: kuyoken
   TOKEN: ${{secrets.TOKEN}}
-  HOME: nehome
 
 jobs:
   build:
@@ -47,9 +46,9 @@ jobs:
 
       - name: Kubectl conf
         run: |
-          mkdir $HOME/.kube
-          ls -la $HOME/.kube
-          cp $HOME/./k8s/config $HOME/.kube/config
+          mkdir .kube
+          ls -la .kube
+          cp ./k8s/config .kube/config
           kubectl cluster-info dump
       - name: Deploy Helm
         run: |
