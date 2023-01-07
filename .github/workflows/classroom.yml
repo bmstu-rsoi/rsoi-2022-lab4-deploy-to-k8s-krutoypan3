@@ -42,36 +42,6 @@ jobs:
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
-
-      - name: Install Kubectl
-        uses: Azure/setup-kubectl@v3.1
-
-      - name: Create .kube folder
-        run: mkdir $HOME/.kube
-
-      - name: Send YC config to K8S
-        run: cp ./k8s/config $HOME/.kube/config
-
-      - name: Delete old Service pods
-        run: helm delete services
-
-      - name: Delete old Database pods
-        run: helm delete databases
-
-      - name: Deploy DB to YC
-        run: helm install databases k8s/postgres-chart
-
-      - name: Deploy Services to YC
-        run: helm install services k8s/services-chart
-
-      - name: Wait 90 seconds
-        run: sleep 90
-          
-
-
-
-
-
       - name: Run API Tests
         uses: matt-ball/newman-action@master
         with:
