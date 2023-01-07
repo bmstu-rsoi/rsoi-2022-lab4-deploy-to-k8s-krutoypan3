@@ -31,10 +31,10 @@ jobs:
       - name: Build, publish to docker hub
         run: |
          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-         docker build --no-cache -t krutoypan3/gateway ./src/gateway/ && docker push krutoypan3/gateway:latest
-         docker build --no-cache -t krutoypan3/rating ./src/rating/ && docker push krutoypan3/rating:latest
-         docker build --no-cache -t krutoypan3/library ./src/library/ && docker push krutoypan3/library:latest
-         docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
+         docker build --no-cache -t krutoypan3/gateway ./src/gateway/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/gateway:latest
+         docker build --no-cache -t krutoypan3/rating ./src/rating/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/rating:latest
+         docker build --no-cache -t krutoypan3/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
+         docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
 
       - name: Install Kubectl
@@ -45,6 +45,12 @@ jobs:
 
       - name: Send YC config to K8S
         run: cp ./k8s/config $HOME/.kube/config
+
+      - name: Delete old Service pods
+        run: helm delete services
+
+      - name: Delete old Database pods
+        run: helm delete databases
 
       - name: Deploy DB to YC
         run: helm install databases k8s/postgres-chart
