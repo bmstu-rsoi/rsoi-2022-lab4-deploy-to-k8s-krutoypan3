@@ -36,9 +36,6 @@ jobs:
       - name: Add YC to bash
         run: |
          export PATH="$PATH:/home/runner/yandex-cloud/completion.zsh.inc"
-          
-         exec -l $SHELL
-         echo 'source /home/runner/yandex-cloud/completion.zsh.inc' >>  ~/.zshrc
 
       - name: Init YC
         run: |
