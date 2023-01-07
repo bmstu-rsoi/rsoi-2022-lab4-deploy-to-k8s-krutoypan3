@@ -39,24 +39,13 @@ jobs:
          docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
 
 
-      - name: Kubectl
-        uses: Azure/setup-kubectl@v3.1
-
-      - name: Kubectl conf
+      - name: k8s deploy
         run: |
-          mkdir $HOME/.kube
-          ls -la $HOME/.kube
-          cp ./k8s/config $HOME/.kube/config
-          kubectl cluster-info dump
-      - name: Deploy Helm
-        run: |
-          echo "HELM 1"
-          helm delete databases
-          helm install databases k8s/postgres-chart
-          echo "HELM 2"
-          helm delete services
-          helm install services k8s/services-chart
-          sleep 30
+          kubectl config set-cluster lab4-klaster --server="$K8S_URL" --insecure-skip-tls-verify=true
+          kubectl config set-credentials admin --token="$K8S_TOKEN"
+          kubectl config set-context default --cluster=lab4-klaster --user=admin
+          kubectl config use-context default
+          kubectl apply -f k8s.yml
           
 
 
