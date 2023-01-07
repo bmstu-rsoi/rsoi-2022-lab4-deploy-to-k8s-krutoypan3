@@ -7,8 +7,6 @@ on:
 env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
-  K8S_TOKEN: eyJhbGciOiJSUzI1NiIsImtpZCI6ImJvR241eWZiVnc0Ml9BazJoR0FXRlNVbC1hNFR0emlBeV9hMEJjMDFLVWMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJpbS1ub3QtbGlrZS1oYXJkLWVkdWNhdGlvbi10b2tlbi0ybGNoNyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJpbS1ub3QtbGlrZS1oYXJkLWVkdWNhdGlvbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImZjNGE5Yjc2LTM3NWUtNGZjZi1hNDFiLWNkMzZhZWE0N2Q2NiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTppbS1ub3QtbGlrZS1oYXJkLWVkdWNhdGlvbiJ9.Oaz72hSgIUIsKpfacpX14lg8ESOkxxXygeRiv3fb6vNtHjh2pik4clDDLKATkS4c0TovovK_d3L_Itq1knF0cIurxv2xEJeMOHl2YMcZ29JCJ0UpUtBb__a7ONARYQL3Ykar_z2cS9YoRfv6OGkKgbxHTMLY-eQHu4FVBHEjbjVAThV9Jy8xcy0gJ-BLGKKgg0P4-xucpfWd4VY4dzvQqBlydZgglxHyyN3fY4dvG5S2BdhNu0AbXX0c3vrDI_eOUrhb93dM4Y57VvtRmeyQy2rYhfwZEeOCaN49e4c_eOJCmeZ6KqlbcaMMeRQ6p2eonU7iuPibcBe8IFs8Q7JYHQ
-  K8S_URL: 51.250.66.197
 
 jobs:
   build:
@@ -39,13 +37,29 @@ jobs:
          docker build --no-cache -t krutoypan3/reservation ./src/reservation/ && docker push krutoypan3/reservation:latest
 
 
-      - name: k8s deploy
-        run: |
-          kubectl config set-cluster lab4rsoiclaster --server="$K8S_URL" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin --token="$K8S_TOKEN"
-          kubectl config set-context default --cluster=lab4rsoiclaster --user=admin
-          kubectl config use-context default
-          kubectl apply -f k8s.yml
+      - name: Install Kubectl
+        uses: Azure/setup-kubectl@v3.1
+
+      - name: Create .kube folder
+        run: mkdir $HOME/.kube
+
+      - name: Send YC config to K8S
+        run: cp ./k8s/config $HOME/.kube/config
+
+      - name: Delete old Service pods
+        run: helm delete services
+
+      - name: Delete old Database pods
+        run: helm delete databases
+
+      - name: Deploy DB to YC
+        run: helm install databases k8s/postgres-chart
+
+      - name: Deploy Services to YC
+        run: helm install services k8s/services-chart
+
+      - name: Wait 90 seconds
+        run: sleep 90
           
 
 
