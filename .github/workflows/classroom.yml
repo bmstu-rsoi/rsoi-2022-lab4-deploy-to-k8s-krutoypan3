@@ -38,6 +38,10 @@ jobs:
          exec -l $SHELL
          echo 'source /home/runner/yandex-cloud/completion.zsh.inc' >>  ~/.zshrc
 
+      - name: Init YC
+        run: |
+         yc init
+
 
       - name: Build, publish to docker hub yc
         run: |
