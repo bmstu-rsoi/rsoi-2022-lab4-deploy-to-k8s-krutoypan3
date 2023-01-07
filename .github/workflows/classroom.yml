@@ -42,6 +42,14 @@ jobs:
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
          docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
+      - name: Run containers
+        timeout-minutes: 5
+        run: |
+          docker compose up -d
+          ./scripts/wait-script.sh
+        env:
+          WAIT_PORTS: 8080,8070,8060,8050
+
       - name: Run API Tests
         uses: matt-ball/newman-action@master
         with:
