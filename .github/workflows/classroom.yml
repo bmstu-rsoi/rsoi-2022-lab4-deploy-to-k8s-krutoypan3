@@ -31,7 +31,7 @@ jobs:
       - name: Connect to YC
         run: |
          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-         echo 'source /home/runner/yandex-cloud/completion.zsh.inc' >>  ~/.zshrc
+         source "/home/runner/.bashrc"
          yc init
 
 
