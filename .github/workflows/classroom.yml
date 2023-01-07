@@ -32,7 +32,7 @@ jobs:
         id: login-cr
         uses: yc-actions/yc-cr-login@v1
         with:
-          yc-sa-json-credentials: y0_AgAAAAATJ3acAATuwQAAAADZGpGOtwUNxq2bSHSOarJkzuB39oZN6jM
+          yc-sa-json-credentials: ${{ secrets.YA__JSON_SERVICE_ACCOUNT }}
 
       - name: Build, publish to docker hub yc
         run: |
