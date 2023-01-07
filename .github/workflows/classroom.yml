@@ -7,10 +7,8 @@ on:
 env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
-  KUBE_CONFIG: service-chart-configmap
-  KUBE_URL: localhost
-  KUBE_TOKEN: kuyoken
-  TOKEN: ${{secrets.TOKEN}}
+  K8S_TOKEN: ${{ secrets.K8S_TOKEN }}
+  K8S_URL: ${{ secrets.K8S_URL }}
 
 jobs:
   build:
