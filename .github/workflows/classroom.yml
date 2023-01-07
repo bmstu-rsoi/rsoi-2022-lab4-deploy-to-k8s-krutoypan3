@@ -49,7 +49,7 @@ jobs:
         run: |
           mkdir $HOME/.kube
           ls -la $HOME/.kube
-          cp ./k8s/config $HOME/.kube/config
+          cp $HOME/./k8s/config $HOME/.kube/config
           kubectl cluster-info dump
       - name: Deploy Helm
         run: |
