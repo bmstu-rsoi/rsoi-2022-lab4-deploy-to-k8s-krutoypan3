@@ -11,6 +11,7 @@ env:
   KUBE_URL: localhost
   KUBE_TOKEN: kuyoken
   TOKEN: ${{secrets.TOKEN}}
+  HOME: nehome
 
 jobs:
   build:
