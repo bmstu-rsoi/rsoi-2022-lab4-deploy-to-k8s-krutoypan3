@@ -46,9 +46,9 @@ jobs:
 
       - name: Kubectl conf
         run: |
-          mkdir .kube
-          ls -la .kube
-          cp ./k8s/config .kube/config
+          mkdir $HOME/.kube
+          ls -la $HOME/.kube
+          cp ./k8s/config $HOME/.kube/config
           kubectl cluster-info dump
       - name: Deploy Helm
         run: |
