@@ -44,6 +44,14 @@ jobs:
 
       - name: Deploy
         run: |
+          
+          echo kubectl config set-cluster lab4rsoiclaster --server="KUBE_HOST" --insecure-skip-tls-verify=true
+          kubectl config set-cluster lab4rsoiclaster --server="$KUBE_HOST" --insecure-skip-tls-verify=true
+          echo kubectl config set-credentials yc-user --token=KUBE_TOKEN
+          kubectl config set-credentials yc-user --token="$KUBE_TOKEN"
+          echo kubectl config set-context default --cluster=lab4rsoiclaster --user=yc-user --namespace=\"arteeem\"
+          kubectl config set-context default --cluster=lab4rsoiclaster --user=yc-user --namespace="arteeem"
+          
           echo "run deploy"
           kubectl config use-context default
           echo kubectl get pods
