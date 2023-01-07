@@ -28,15 +28,6 @@ jobs:
       - name: Build images
         run: docker-compose build -t iisus
 
-      - name: Download YC CLI
-        run: |
-         curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-
-
-      - name: Init YC
-        run: |
-         yc init
-
       - name: Login container registry
         id: login-cr
         uses: yc-actions/yc-cr-login@v1
