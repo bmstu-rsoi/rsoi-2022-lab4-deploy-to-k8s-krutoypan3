@@ -37,6 +37,11 @@ jobs:
         run: |
          yc init
 
+      - name: Login container registry
+        id: login-cr
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: y0_AgAAAAATJ3acAATuwQAAAADZGpGOtwUNxq2bSHSOarJkzuB39oZN6jM
 
       - name: Build, publish to docker hub yc
         run: |
