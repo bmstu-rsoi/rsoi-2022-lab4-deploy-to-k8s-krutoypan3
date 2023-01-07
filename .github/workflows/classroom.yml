@@ -30,14 +30,8 @@ jobs:
 
       - name: Download YC CLI
         run: |
-         curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-         source "/home/runner/.bashrc"
+         curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh
 
-      - name: Add YC to bash
-        run: |
-         export PATH="$PATH:/home/runner/yandex-cloud/completion.zsh.inc"
-         echo $PATH
-         source "/home/runner/.bashrc"
 
       - name: Init YC
         run: |
