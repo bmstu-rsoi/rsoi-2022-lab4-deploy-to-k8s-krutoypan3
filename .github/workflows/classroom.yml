@@ -49,7 +49,7 @@ jobs:
       - name: Kubernetes
         run: |
           echo "run deploy"
-          kubectl config set-cluster yc-lab4rsoiclaster --server="$KUBE_HOST" --certificate-authority='$AUTH'
+          kubectl config set-cluster yc-lab4rsoiclaster --server="$KUBE_HOST" --certificate-authority='k8s/AUTH'
           kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token="$KUBE_TOKEN"
           kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=yc-managed-k8s-catad9u57l6t4cgab0tb
           kubectl config use-context default
