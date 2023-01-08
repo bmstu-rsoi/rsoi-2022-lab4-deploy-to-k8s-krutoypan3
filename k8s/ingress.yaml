@@ -1,18 +1,35 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: alb-demo-tls
   annotations:
-    "kubernetes.io/ingress.class": "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt"
+    ingress.alb.yc.io/subnets: 10.0.0.0/16
+    ingress.alb.yc.io/security-groups: 0.0.0.0/0
+    ingress.alb.yc.io/external-ipv4-address: 158.160.40.189
+    ingress.alb.yc.io/group-name: default
 spec:
   rules:
-    - http:
+    - host: dopustim.zona.
+      http:
         paths:
-          - path: /
+          - path: /app1
             pathType: Prefix
             backend:
               service:
-                name: gateway
+                name: alb-demo-1
                 port:
-                  number: 8080
+                  number: 80
+          - path: /app2
+            pathType: Prefix
+            backend:
+              service:
+                name: alb-demo-2
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: alb-demo-2
+                port:
+                  name: http
