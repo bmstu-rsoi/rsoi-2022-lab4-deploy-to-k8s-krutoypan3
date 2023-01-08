@@ -37,30 +37,30 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YA__JSON_SERVICE_ACCOUNT }}
 
-#      - name: Build, publish to docker hub yc
-#        run: |
-#         echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-#         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/gateway ./src/gateway/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/gateway:latest
-#         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/rating ./src/rating/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/rating:latest
-#         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
-#         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
+      - name: Build, publish to docker hub yc
+        run: |
+         echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/gateway ./src/gateway/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/gateway:latest
+         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/rating ./src/rating/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/rating:latest
+         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
+         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
 
-#      - name: Configure kubectl
-#        run: |
-#          mkdir $HOME/.kube
-#          cp k8s/config.yaml $HOME/.kube/config
-#
-#      - name: Kubernetes
-#        run: |
-#          echo "run deploy"
-#
-#          kubectl config view --raw
-#
-#          helm uninstall services
-#          helm install services k8s/services-chart/
-#
-#          sleep 90
+      - name: Configure kubectl
+        run: |
+          mkdir $HOME/.kube
+          cp k8s/config.yaml $HOME/.kube/config
+
+      - name: Kubernetes
+        run: |
+          echo "run deploy"
+
+          kubectl config view --raw
+
+          helm uninstall services
+          helm install services k8s/services-chart/
+
+          sleep 120
 
 
 
