@@ -7,7 +7,7 @@ on:
 env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
-  KUBE_HOST: 51.250.66.197
+  KUBE_HOST: https://51.250.66.197
   KUBE_TOKEN: AQVNwSejkz4bsmxtLT9vjKdKEJOOMm-yXHvAM-bR
 
 jobs:
@@ -48,9 +48,9 @@ jobs:
       - name: Kubernetes
         run: |
           echo "run deploy"
-          echo kubectl config set-cluster yc-managed-k8s-catad9u57l6t4cgab0tb --server="$KUBE_HOST" --insecure-skip-tls-verify=true
+          echo kubectl config set-cluster yc-managed-k8s-catad9u57l6t4cgab0tb --server="KUBE_HOST" --insecure-skip-tls-verify=true
           kubectl config set-cluster yc-managed-k8s-catad9u57l6t4cgab0tb --server="$KUBE_HOST" --insecure-skip-tls-verify=true
-          echo kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token=$KUBE_TOKEN
+          echo kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token=KUBE_TOKEN
           kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token="$KUBE_TOKEN"
           echo kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace=\"artem\"
           kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace="artem"
