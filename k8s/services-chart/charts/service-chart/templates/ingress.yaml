@@ -10,8 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: helm
 spec:
   rules:
-    - host: {{ .Chart.Name }}.{{ .Values.domain }}
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
