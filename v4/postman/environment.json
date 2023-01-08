@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "baseUrl",
-			"value": "10.128.0.12",
+			"value": "localhost",
 			"enabled": true
 		}
 	],
