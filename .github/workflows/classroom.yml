@@ -8,7 +8,7 @@ env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
   KUBE_HOST: https://51.250.66.197
-  KUBE_TOKEN: YCM6vZXNgfKiJ1Km6iVaz3kNoSmqkrValYH-BAuC
+  KUBE_TOKEN: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNkltSnZSMjQxZVdaaVZuYzBNbDlCYXpKb1IwRlhSbE5WYkMxaE5GUjBlbWxCZVY5aE1FSmpNREZMVldNaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUpyZFdKbExYTjVjM1JsYlNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKbmFYUnNZV0l0WVdSdGFXNHRkRzlyWlc0dGRtZHFaR1FpTENKcmRXSmxjbTVsZEdWekxtbHZMM05sY25acFkyVmhZMk52ZFc1MEwzTmxjblpwWTJVdFlXTmpiM1Z1ZEM1dVlXMWxJam9pWjJsMGJHRmlMV0ZrYldsdUlpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVkV2xrSWpvaU1UQmpZVEZrWmpjdE1EQXdaUzAwTXpJd0xUZ3pNVFl0TXpReFpHVmxaV000Tmpoaklpd2ljM1ZpSWpvaWMzbHpkR1Z0T25ObGNuWnBZMlZoWTJOdmRXNTBPbXQxWW1VdGMzbHpkR1Z0T21kcGRHeGhZaTFoWkcxcGJpSjkuakdKVXFoOGs4eVAyd2pfb0o1aGNITkVFWWw4QmVCX0xaMFBMZ0xrdGhyZU9Ea2dhSkRSVER0VFVKYTZHYWd3dXhLZ2I3ejltaDBLWU9zenlaaXZYSFNDazR3a2p3Y1VKZmw4QmE2dk4wNXJ0OU1VcXRlWEx4WkJHYlJBR3d0YWtEbTRWTHhFSGVHZXhNSDBRZG5Ybkhra0tyR25NZTNjMTBIT3RZMFJySFZRZ0FRWm9CRHR4OHM4ZkNZWFJWVzByUVprUm5lMDM1MXA1SW96SGNHRENwaFM3NG9icXhidDR5TU4zN0hRWmNCemRHOWQzbkpyUGNaOEo3WGxzdThlQmVtQ0IzNVJPMG9GRkVFNlN5RnlXQUZ4QjNiVF83eHZ6cklRSzlvUE1DSmtGWWNvRE5ReFlHMjQwQ1VlZXdPemtrekxtcF9rOFVHRzVmYjBXWVNkcVV3
 
 jobs:
   build:
@@ -49,8 +49,8 @@ jobs:
         run: |
           echo "run deploy"
           kubectl config set-cluster yc-lab4rsoiclaster --server="$KUBE_HOST" --insecure-skip-tls-verify=true
-          kubectl config set-credentials ajetjmb1j43gupkg3tv4 --token="$KUBE_TOKEN"
-          kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=ajetjmb1j43gupkg3tv4
+          kubectl config set-credentials gitlab-admin --token="$KUBE_TOKEN"
+          kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=gitlab-admin
           kubectl config use-context default
           helm install services k8s/services-chart/
 
