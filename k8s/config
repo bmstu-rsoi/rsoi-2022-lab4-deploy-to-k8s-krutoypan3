@@ -21,3 +21,5 @@ users:
       - k8s
       - create-token
       - --profile=default
+      env: null
+      provideClusterInfo: false
