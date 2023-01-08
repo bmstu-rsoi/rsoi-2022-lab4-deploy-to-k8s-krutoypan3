@@ -21,6 +21,6 @@ users:
       - k8s
       - create-token
       - --profile=default
-      command: ls
+      command: kubectl get pods
       env: null
       provideClusterInfo: false
