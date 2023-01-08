@@ -42,23 +42,6 @@ jobs:
 #         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/library ./src/library/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/library:latest
 #         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
-      - name: Deploy
-        run: |
-          
-          echo kubectl config set-cluster lab4rsoiclaster --server="KUBE_HOST" --insecure-skip-tls-verify=true
-          kubectl config set-cluster lab4rsoiclaster --server="$KUBE_HOST" --insecure-skip-tls-verify=true
-          echo kubectl config set-credentials yc-user --token=KUBE_TOKEN
-          kubectl config set-credentials yc-user --token="$KUBE_TOKEN"
-          echo kubectl config set-context default --cluster=lab4rsoiclaster --user=yc-user --namespace=\"arteeem\"
-          kubectl config set-context default --cluster=lab4rsoiclaster --user=yc-user --namespace="arteeem"
-          
-          echo "run deploy"
-          kubectl config use-context default
-          echo kubectl get pods
-          kubectl get pods
-          cd k8s && helm upgrade services ./services-chart
-          sleep 45
-
       - name: Run API Tests
         uses: matt-ball/newman-action@master
         with:
