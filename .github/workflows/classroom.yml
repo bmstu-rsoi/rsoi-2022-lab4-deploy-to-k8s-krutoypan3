@@ -48,8 +48,8 @@ jobs:
       - name: Kubernetes
         run: |
           echo "run deploy"
-          kubectl config set-cluster k8s --server="KUBE_HOST" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin --token="KUBE_TOKEN"
+          kubectl config set-cluster yc-managed-k8s-catad9u57l6t4cgab0tb --server="KUBE_HOST" --insecure-skip-tls-verify=true
+          kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token="KUBE_TOKEN"
           kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb
           kubectl config use-context default
           helm install services k8s/services-chart/
