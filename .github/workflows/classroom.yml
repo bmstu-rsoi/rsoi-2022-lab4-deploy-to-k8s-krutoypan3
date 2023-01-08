@@ -57,6 +57,7 @@ jobs:
           
           kubectl config use-context default
           echo kubectl get pods
+          ls
           kubectl get pods --kubeconfig=./config
           cd k8s && helm upgrade services ./services-chart
           sleep 45
