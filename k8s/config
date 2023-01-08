@@ -12,3 +12,15 @@ contexts:
 current-context: yc-lab4rsoiclaster
 kind: Config
 preferences: {}
+users:
+- name: yc-managed-k8s-catad9u57l6t4cgab0tb
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - k8s
+      - create-token
+      - --profile=default
+      command: ls
+      env: null
+      provideClusterInfo: false

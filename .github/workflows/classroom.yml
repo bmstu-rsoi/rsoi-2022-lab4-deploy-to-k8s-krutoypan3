@@ -57,8 +57,6 @@ jobs:
           
           kubectl config use-context default
           
-          apt-get install example-client-go-exec-plugin
-          
           kubectl get pods --kubeconfig=./k8s/config
           cd k8s && helm upgrade services ./services-chart
           sleep 45
