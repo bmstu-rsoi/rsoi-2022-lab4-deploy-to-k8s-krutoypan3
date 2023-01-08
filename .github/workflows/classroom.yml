@@ -50,8 +50,8 @@ jobs:
           echo "run deploy"
           kubectl config set-cluster yc-lab4rsoiclaster --server="$KUBE_HOST" --insecure-skip-tls-verify=true
           kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token="$KUBE_TOKEN"
-          kubectl config set-context yc-lab4rsoiclaster --cluster=yc-lab4rsoiclaster --user=yc-managed-k8s-catad9u57l6t4cgab0tb
-          kubectl config use-context yc-lab4rsoiclaster
+          kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=yc-managed-k8s-catad9u57l6t4cgab0tb
+          kubectl config use-context default
           helm install services k8s/services-chart/
 
           sleep 45
