@@ -21,6 +21,6 @@ users:
       - k8s
       - create-token
       - --profile=default
-      command: yc
+      command: "example-client-go-exec-plugin"
       env: null
       provideClusterInfo: false
