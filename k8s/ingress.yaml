@@ -9,7 +9,7 @@ metadata:
     ingress.alb.yc.io/group-name: default
 spec:
   rules:
-    - host: dopustim.zona.
+    - host: dopustim.zona
       http:
         paths:
           - path: /app1

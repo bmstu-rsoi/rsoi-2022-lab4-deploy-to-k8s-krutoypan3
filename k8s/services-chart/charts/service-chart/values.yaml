@@ -5,7 +5,7 @@ service:
   isGateway:
   image:
     name:
-    version: "1.0"
+    version: latest
   database:
     name:
     host: postgres
