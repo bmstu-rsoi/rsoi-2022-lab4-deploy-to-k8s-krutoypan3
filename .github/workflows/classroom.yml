@@ -54,9 +54,7 @@ jobs:
           kubectl config set-credentials yc-managed-k8s-catad9u57l6t4cgab0tb --token="$KUBE_TOKEN"
           echo kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace=\"artem\"
           kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace="artem"
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
+          
           kubectl config use-context default
           kubectl get pods --kubeconfig=./k8s/config
           cd k8s && helm upgrade services ./services-chart
