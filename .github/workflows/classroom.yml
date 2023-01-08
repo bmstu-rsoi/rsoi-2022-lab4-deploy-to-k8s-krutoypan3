@@ -55,6 +55,10 @@ jobs:
           echo kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace=\"default\"
           kubectl config set-context default --cluster=yc-managed-k8s-catad9u57l6t4cgab0tb --user=yc-managed-k8s-catad9u57l6t4cgab0tb --namespace="default"
           
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
+          helm repo update && \
+          helm install ingress-nginx ingress-nginx/ingress-nginx
+          
           kubectl config use-context default
           kubectl get pods
           cd k8s && helm upgrade services ./services-chart
