@@ -46,9 +46,19 @@ jobs:
 #         docker build --no-cache -t cr.yandex/crpg934f0qu6v6sq6pj9/reservation ./src/reservation/ && docker push cr.yandex/crpg934f0qu6v6sq6pj9/reservation:latest
 
 
+      - name: Configure kubectl
+        run: |
+          mkdir $HOME/.kube
+          cp k8s/config.yaml $HOME/.kube/config
+
       - name: Kubernetes
         run: |
           echo "run deploy"
+          
+          
+          kubectl config set-cluster yc-lab4rsoiclaster --server="$KUBE_HOST" --insecure-skip-tls-verify=true 
+          kubectl config set-credentials ajetjmb1j43gupkg3tv4 --token="$KUBE_TOKEN"
+          kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=ajetjmb1j43gupkg3tv4
           kubectl config use-context default
           
           kubectl config view --raw
