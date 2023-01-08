@@ -8,7 +8,7 @@ env:
   DOCKERHUB_PASS: Wi@REtCTC5maj9z
   DOCKERHUB_USERNAME: krutoypan3
   KUBE_HOST: https://51.250.66.197
-  KUBE_TOKEN: YCM_iGwEmYaK42N4VRHP9libXDDmzu_HFHYyri9M
+  KUBE_TOKEN: AQVNzEGuUrW-jv_xbh5MSYOM0shDyaTbcZJc6PF3
 
 jobs:
   build:
