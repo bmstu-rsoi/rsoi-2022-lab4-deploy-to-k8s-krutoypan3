@@ -61,7 +61,7 @@ jobs:
 #          helm repo update && \
 #          helm uninstall ingress-nginx
 #          helm install ingress-nginx ingress-nginx/ingress-nginx
-          
+#
           helm uninstall services
           helm install services k8s/services-chart/
 
