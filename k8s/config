@@ -21,6 +21,3 @@ users:
       - k8s
       - create-token
       - --profile=default
-      command: C:\Users\Kruto\yandex-cloud\bin\yc.exe
-      env: null
-      provideClusterInfo: false
