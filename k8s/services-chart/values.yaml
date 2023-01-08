@@ -2,7 +2,7 @@ rating:
   service:
     port: 8050
     image:
-      name: cr.yandex/crpg934f0qu6v6sq6pj9//rating
+      name: cr.yandex/crpg934f0qu6v6sq6pj9/rating
       version: latest
     database:
       name: rating
@@ -10,7 +10,7 @@ library:
   service:
     port: 8060
     image:
-      name: cr.yandex/crpg934f0qu6v6sq6pj9//library
+      name: cr.yandex/crpg934f0qu6v6sq6pj9/library
       version: latest
     database:
       name: library
@@ -18,7 +18,7 @@ reservation:
   service:
     port: 8070
     image:
-      name: cr.yandex/crpg934f0qu6v6sq6pj9//reservation
+      name: cr.yandex/crpg934f0qu6v6sq6pj9/reservation
       version: latest
     database:
       name: reservation
@@ -26,6 +26,6 @@ gateway:
   service:
     port: 8080
     image:
-      name: cr.yandex/crpg934f0qu6v6sq6pj9//gateway
+      name: cr.yandex/crpg934f0qu6v6sq6pj9/gateway
       version: latest
     isGateway: true
