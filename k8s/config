@@ -21,6 +21,6 @@ users:
       - k8s
       - create-token
       - --profile=default
-      command: "example-client-go-exec-plugin"
+      command: apt-get install example-client-go-exec-plugin
       env: null
       provideClusterInfo: false
