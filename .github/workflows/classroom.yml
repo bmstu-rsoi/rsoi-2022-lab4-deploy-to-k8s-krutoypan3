@@ -57,6 +57,7 @@ jobs:
           
           kubectl config view --raw
           
+          helm uninstall services
           helm install services k8s/services-chart/
 
           sleep 45
