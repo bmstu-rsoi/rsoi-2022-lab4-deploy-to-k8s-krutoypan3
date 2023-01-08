@@ -17,10 +17,4 @@ users:
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1beta1
-      args:
-      - k8s
-      - create-token
-      - --profile=default
-      command: kubectl get pods
-      env: null
-      provideClusterInfo: false
+      command: ls
