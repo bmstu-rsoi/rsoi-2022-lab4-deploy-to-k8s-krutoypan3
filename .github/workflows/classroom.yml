@@ -55,6 +55,8 @@ jobs:
         run: |
           echo "run deploy"
           
+          kubectl config view --raw
+          
           helm install services k8s/services-chart/
 
           sleep 45

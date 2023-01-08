@@ -13,17 +13,6 @@ current-context: yc-lab4rsoiclaster
 kind: Config
 preferences: {}
 users:
-- name: ajetjmb1j43gupkg3tv4
-  user:
-    token: YCN2XONnQZdvHrZL2caLb8x2H6JtUFHdBE_8bZj8
 - name: yc-managed-k8s-catad9u57l6t4cgab0tb
   user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1beta1
-      args:
-      - k8s
-      - create-token
-      - --profile=default
-      command: C:\Users\Kruto\yandex-cloud\bin\yc.exe
-      env: null
-      provideClusterInfo: false
+    token: t1.9euelZqTx4rGz5SZzcibzJyYl5zJnO3rnpWanMbIm4mOjp3OmJqYicjKnMzl8_cgcxNi-e9eXnMY_t3z92AhEWL5715ecxj-.22wZEwj0tAiNcnrwuHsWpUKlQldFV_Y3chuAQqebstFhcpiGGWWCgIjfYAUsVcSybk3SUp1VB9rME8PqdiMZCA
