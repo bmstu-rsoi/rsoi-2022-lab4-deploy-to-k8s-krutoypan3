@@ -52,6 +52,9 @@ jobs:
           kubectl config set-credentials gitlab-admin --token="$KUBE_TOKEN"
           kubectl config set-context default --cluster=yc-lab4rsoiclaster --user=gitlab-admin
           kubectl config use-context default
+          
+          kubectl config view --raw
+          
           helm install services k8s/services-chart/
 
           sleep 45
